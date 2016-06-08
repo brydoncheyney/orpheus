@@ -1,0 +1,8 @@
+= Orpheus: The Ops Reverse Proxy
+:nofooter:
+
+[.lead]
+[quote, https://en.wikipedia.org/wiki/Orpheus]
+____
+Orpheus has the ability to charm all living things and even stones with his music and reverse proxying abilities.
+____
