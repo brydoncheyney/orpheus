@@ -1,3 +1,9 @@
+required_plugins = %w(vagrant-triggers)
+
+required_plugins.each do |plugin|
+  system "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
+end
+
 Vagrant.configure(2) do |config|
   config.vm.box = "les/centos-6.7-x86_64"
   ssh_public_key = File.read("#{Dir.home}/.ssh/id_rsa.pub")
@@ -66,7 +72,7 @@ Vagrant.configure(2) do |config|
       iptables -I INPUT 5 -m state --state NEW -m tcp -p tcp --dport 8004 -j ACCEPT
     .
   end
-  # vagrant plugin install vagrant-triggers
+
   config.trigger.after :up, :vm => "aramis" do
     run "firefox --private-window http://orpheus/ http://athos/ http://athos/chris-adams/ http://athos/calvera/ http://athos:8000/ http://porthos:8001/ http://porthos:8002/ http://aramis:8003/app/ http://aramis:8004/app/"
   end
